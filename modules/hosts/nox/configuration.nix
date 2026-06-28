@@ -21,12 +21,16 @@
         substituters = [
           "https://mirrors.ustc.edu.cn/nix-channels/store?priority=100"
           "https://mirrors.tuna.tsinghua.edu.cn/nix-channels/store"
+          "https://cache.nixos.org"
           "https://hyprland.cachix.org"
         ];
         trusted-substituters = [
           "https://hyprland.cachix.org"
         ];
-        trusted-public-keys = [ "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc=" ];
+        trusted-public-keys = [
+          "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
+          "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+        ];
         # Required so non-root users are allowed to use the above substituter/keys.
         # Use @wheel for all sudo users, or list your username explicitly.
         trusted-users = [
@@ -90,13 +94,13 @@
       kdePackages.dolphin
       nixfmt
       firefox
-      clash-verge-rev
       qq
       devenv
       yazi
       qt6Packages.fcitx5-configtool
       testdisk
       nwg-displays
+      inputs.nixpkgs_stable.legacyPackages.${pkgs.hostPlatform.system}.clash-verge-rev
     ];
 
     environment.sessionVariables = {
@@ -192,8 +196,6 @@
         echo "✓ Initliazing fish"
       '';
     };
-
-    programs.clash-verge.enable = true;
 
     # This setups a SSH server. Very important if you're setting up a headless system.
     # Feel free to remove if you don't need it.

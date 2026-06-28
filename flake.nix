@@ -2,7 +2,7 @@
   description = "Diking's new nix config";
 
   inputs = {
-    # nixpkgs.url = "git+https://mirrors.nju.edu.cn/git/nixpkgs.git?ref=nixos-26.05&shallow=1";
+    nixpkgs_stable.url = "git+https://mirrors.nju.edu.cn/git/nixpkgs.git?ref=nixos-26.05&shallow=1";
     nixpkgs.url = "git+https://mirrors.nju.edu.cn/git/nixpkgs.git?ref=nixos-unstable&shallow=1";
 
     home-manager.url = "github:nix-community/home-manager/release-26.05";

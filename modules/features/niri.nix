@@ -47,14 +47,34 @@
           layout.gaps = 5;
           binds = {
             "Mod+Q".spawn-sh = lib.getExe pkgs.ghostty;
-            "Mod+M".show-hotkey-overlay = { };
-            "Mod+E".spawn-sh = "dolphin";
-            "Mod+B".spawn-sh = lib.getExe pkgs.firefox;
-            "Mod+C".close-window = { };
+            "Mod+E".spawn-sh = lib.getExe pkgs.kdePackages.dolphin;
             "Mod+R".spawn-sh = "${lib.getExe self'.packages.noctalia} ipc call launcher toggle";
+            "Mod+T".toggle-window-floating = { };
+
+            "Mod+C".close-window = { };
+            "Mod+B".spawn-sh = lib.getExe pkgs.firefox;
+            "Mod+M".show-hotkey-overlay = { };
+
             "Mod+Left".focus-column-left = { };
             "Mod+Right".focus-column-right = { };
+
+            "Mod+F".maximize-column = { };
+            "Mod+Shift+F".fullscreen-window = { };
+
+            "Mod+S".spawn-sh =
+              "${lib.getExe pkgs.grim} -g \"\$(${lib.getExe pkgs.slurp})\" - | ${lib.getExe pkgs.satty} -f -";
           };
+
+          window-rules = [
+            {
+              matches = [
+                {
+                  app-id = "satty";
+                }
+              ];
+              open-floating = true;
+            }
+          ];
         };
       };
     };
